@@ -1,0 +1,7 @@
+<!--components/navbar/navbar.wxml-->
+<view class="navbar custom-class" style="height:{{navHeight}}px">
+  <view class="navbar-back-wrap" style="top:{{navTop}}px">
+    <view class="navbar-back-icon"></view>
+    <view class="navbar-title" style="height: {{menuButtonHeight}}px; line-height: {{menuButtonHeight}}px" bind:click="_toIndex">{{pageName}}</view>
+  </view>
+</view>

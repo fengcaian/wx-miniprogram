@@ -1,0 +1,7 @@
+<!--components/tabbar/tabbar.wxml-->
+<view class="tabbar">
+  <view class="item">1</view>
+  <view class="item">2</view>
+  <view class="item">3</view>
+  <view class="item">4</view>
+</view>

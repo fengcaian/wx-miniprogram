@@ -1,0 +1,36 @@
+/* components/navbar/navbar.wxss */
+
+.navbar {
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  flex-shrink: 0;
+}
+.navbar-back-wrap {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar-back-icon {
+  background-image: url("data:image/svg+xml,%3Csvg t='1620456669306' class='icon' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='1073' width='64' height='64'%3E%3Cpath d='M677.391515 873.916768c-7.86101 0-15.618586-2.999596-21.617778-8.895354L324.473535 533.721212c-11.998384-11.894949-11.998384-31.340606 0-43.235555L655.670303 159.288889c5.999192-5.999192 13.756768-8.895354 21.617778-8.895354 7.757576 0 15.618586 2.999596 21.617778 8.895354 11.894949 11.894949 11.894949 31.237172 0 43.235555L389.223434 512.103434 698.905859 821.785859c11.894949 11.998384 11.894949 31.340606 0 43.235555-5.895758 5.895758-13.756768 8.895354-21.514344 8.895354z m0 0' p-id='1074' fill='%232c2c2c'%3E%3C/path%3E%3C/svg%3E");
+  background-size: 64rpx;
+  width: 64rpx;
+  height: 64rpx;
+}
+
+.navbar-title {
+  height: 64rpx;
+  line-height: 64rpx;
+  text-align: center;
+  z-index: 10;
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

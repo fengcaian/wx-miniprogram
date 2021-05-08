@@ -1,0 +1,5 @@
+var arrayfind = function (arr, string) { 
+  if (arr !== undefined) { 
+  return arr.indexOf(string) } else return -1
+  }
+  module.exports.arrayfind = arrayfind ; 
