@@ -1,8 +1,8 @@
 // index.js
 // 获取应用实例
-const app = getApp()
+const App = getApp()
 
-Page({
+Component({
   data: {
     motto: 'Hello World',
     userInfo: {},
@@ -13,36 +13,31 @@ Page({
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'), // 如需尝试获取用户信息可改为false
     navHeight: ''
   },
+  pageLifetimes: {
+    show() {
+      if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+        this.getTabBar().setData({
+          selected: 0
+        })
+      }
+      this.setData({
+        navHeight: App.globalData.navHeight
+      });
+      if (wx.getUserProfile) {
+        this.setData({
+          canIUseGetUserProfile: true
+        });
+      }
+      this.setData({
+        list: App.globalData.authList
+      });
+    }
+  },
   // 事件处理函数
   bindViewTap() {
     wx.navigateTo({
       url: '../logs/logs'
     })
-  },
-  onLoad() {
-    var app = getApp();
-    this.setData({
-      navHeight: app.globalData.navHeight
-    });
-    if (wx.getUserProfile) {
-      this.setData({
-        canIUseGetUserProfile: true
-      });
-    }
-    this.setData({
-      list: app.globalData.authList
-    });
-    console.log(this.data.list);
-    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 0,
-        showFlag:""
-      });
-      console.log('index');
-    }
-  },
-  onShow() {
-    
   },
   getUserProfile(e) {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗

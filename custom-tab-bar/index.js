@@ -1,4 +1,5 @@
 // components/tabbar/tabbar.js
+const App = getApp();
 Component({
   /**
    * 组件的属性列表
@@ -41,9 +42,6 @@ Component({
       }
     ]
   },
-
-  
-
   /**
    * 组件的方法列表
    */
@@ -51,11 +49,16 @@ Component({
     switchTab(e) {
       const data = e.currentTarget.dataset
       const url = data.path
-      wx.switchTab({url})
-      this.setData({
-        selected: data.index
-      });
-      console.log('selected=', this.data.selected);
+      wx.switchTab({
+        url,
+        success: () => {
+          this.setData({
+            selected: data.index
+          });
+          App.globalData.tabbarSelected = data.index;
+          console.log('selected=', this.data.selected);
+        }
+      })
     }
   }
 })
