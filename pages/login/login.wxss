@@ -1,10 +1,4 @@
 /* pages/login/login.wxss */
-.container {
-  height: 100%;
-  padding: 200rpx 50rpx;
-  display: flex;
-  align-items: flex-start;
-}
 .title {
   display: flex;
   flex-direction: column;

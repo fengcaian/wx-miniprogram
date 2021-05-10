@@ -1,8 +1,11 @@
 <!--index.wxml-->
 <view class='view-page'>
-  <navbar page-name="返回"></navbar>
-  <view class="page-content" style="margin-top: {{navHeight}}px">
-    <view class="userinfo">
+  <view style="height: {{navHeight}}px">
+    <navbar page-name="返回"></navbar>
+  </view>
+  <view class="page-content" style="height: calc(100% - {{navHeight}}px - 50px)">
+    <view class="container">
+      <view class="userinfo">
       <block wx:if="{{canIUseOpenData}}" calss="userinfo-opendata">
         <view class="userinfo-avatar" bindtap="bindViewTap">
           <open-data type="userAvatarUrl"></open-data>
@@ -24,7 +27,19 @@
     <view class="usermotto">
       <text class="user-motto">{{motto}}</text>
     </view>
+    <view class="usermotto">
+      <text class="user-motto">{{motto}}</text>
+    </view>
+    <view class="usermotto">
+      <text class="user-motto">{{motto}}</text>
+    </view>
+    <view class="usermotto">
+      <text class="user-motto">{{motto}}</text>
+    </view>
+    </view>
   </view>
-  <!-- <tabbar></tabbar> -->
+  <!-- <view style="height: 50px; width: 100px">
+    <tabbar></tabbar>
+  </view> -->
 </view>
 

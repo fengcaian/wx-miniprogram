@@ -1,0 +1,24 @@
+<!--components/tabbar/tabbar.wxml-->
+<cover-view wx:if="{{useSlot}}" class="tab-bar">
+  <cover-view class="tab-bar-border"></cover-view>
+  <slot></slot>
+</cover-view>
+<cover-view wx:else class="tab-bar">
+  <cover-view class="tab-bar-border"></cover-view>
+  <cover-view wx:for="{{list}}" wx:key="index" class="tab-bar-item" data-path="{{item.pagePath}}" data-index="{{index}}" bindtap="switchTab">
+    <cover-image class="tab-bar-icon" src="{{selected === index ? item.selectedIconPath : item.iconPath}}"></cover-image>
+    <cover-view style="color: {{selected === index ? selectedColor : color}}">{{item.text}}{{selected}}</cover-view>
+  </cover-view>
+  <!-- <view class="item">
+    <view class="workspace-icon"></view>
+    <view>工作台</view>
+  </view>
+  <view class="item">
+    <view class="add-icon"></view>
+    <view>新增</view>
+  </view>
+  <view class="item">
+    <view class="mine-icon"></view>
+    <view>我的</view>
+  </view> -->
+</cover-view>

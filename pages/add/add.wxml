@@ -1,0 +1,14 @@
+<!--pages/cart/cart.wxml-->
+<view class='view-page'>
+  <view style="height: {{navHeight}}px">
+    <navbar page-name="返回"></navbar>
+  </view>
+  <view class="page-content" style="height: calc(100% - {{navHeight}}px - 50px)">
+    <view class="container">
+      add
+    </view>
+  </view>
+  <!-- <view style="height: 50px; width: 100px">
+    <tabbar></tabbar>
+  </view> -->
+</view>

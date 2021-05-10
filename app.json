@@ -3,9 +3,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/login/login",
-    "pages/cart/cart",
-    "components/navbar/navbar",
-    "components/tabbar/tabbar"
+    "pages/add/add",
+    "components/navbar/navbar"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -17,31 +16,24 @@
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "tabBar": {
+    "custom": true,
+    "color": "#000000",
+    "selectedColor": "#000000",
+    "backgroundColor": "#000000",
     "list": [
       {
-        "selectedIconPath": "images/home.png",
-        "iconPath": "images/home.png",
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "工作台"
       },
       {
-        "selectedIconPath": "images/group.png",
-        "iconPath": "images/group.png",
-        "pagePath": "pages/logs/logs",
-        "text": "分类"
+        "pagePath": "pages/add/add",
+        "text": "新增"
       },
       {
-        "selectedIconPath": "images/cart.png",
-        "iconPath": "images/cart.png",
-        "pagePath": "pages/cart/cart",
-        "text": "购物车"
-      },
-      {
-        "selectedIconPath": "images/user.png",
-        "iconPath": "images/user.png",
         "pagePath": "pages/login/login",
         "text": "我的"
       }
     ]
-  }
+  },
+  "usingComponents": {}
 }

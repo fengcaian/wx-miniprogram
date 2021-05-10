@@ -5,14 +5,27 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    navHeight: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var app = getApp();
+    this.setData({
+      navHeight: app.globalData.navHeight
+    });
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 1,
+        showFlag:""
+      });
+      console.log('add');
+    }
+  },
+  onShow() {
+    
   },
 
   webviewMessage(e) {

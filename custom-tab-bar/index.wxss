@@ -1,0 +1,44 @@
+/* components/tabbar/tabbar.wxss */
+.tab-bar{
+  width: 100%;
+  height: 49px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  border-top: 1px solid;
+  z-index: 10;
+  background: #FFF;
+}
+.tab-bar-item{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  text-align: center;
+}
+.tab-bar-icon{
+  width: 48rpx;
+  height: 48rpx;
+}
+.workspace-icon{
+  background-image: url("data:image/svg+xml,%3Csvg t='1620633500149' class='icon' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='6077' width='48' height='48'%3E%3Cpath d='M910.762667 369.664l-135.765334 135.765333a85.333333 85.333333 0 0 1-120.661333 0l-135.765333-135.765333a85.333333 85.333333 0 0 1 0-120.661333l135.765333-135.765334a85.333333 85.333333 0 0 1 120.661333 0l135.765334 135.765334a85.333333 85.333333 0 0 1 0 120.661333zM362.666667 938.666667H170.666667a85.333333 85.333333 0 0 1-85.333334-85.333334v-192a85.333333 85.333333 0 0 1 85.333334-85.333333h192a85.333333 85.333333 0 0 1 85.333333 85.333333v192a85.333333 85.333333 0 0 1-85.333333 85.333334z m0-448H170.666667a85.333333 85.333333 0 0 1-85.333334-85.333334v-192a85.333333 85.333333 0 0 1 85.333334-85.333333h192a85.333333 85.333333 0 0 1 85.333333 85.333333v192a85.333333 85.333333 0 0 1-85.333333 85.333334z m256 85.333333h192a85.333333 85.333333 0 0 1 85.333333 85.333333v192a85.333333 85.333333 0 0 1-85.333333 85.333334h-192a85.333333 85.333333 0 0 1-85.333334-85.333334v-192a85.333333 85.333333 0 0 1 85.333334-85.333333z' p-id='6078' fill='%23515151'%3E%3C/path%3E%3C/svg%3E");
+  background-size: 48rpx;
+  width: 48rpx;
+  height: 48rpx;
+}
+.add-icon{
+  background-image: url("data:image/svg+xml,%3Csvg t='1620633429350' class='icon' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='2933' width='48' height='48'%3E%3Cpath d='M1024 512A512 512 0 1 1 512 0a512 512 0 0 1 512 512z m-245.12-40h-226.88V245.12a40 40 0 0 0-80 0v226.88H245.12a40 40 0 0 0 0 80h226.88v226.88a40 40 0 1 0 80 0v-226.88h226.88a40 40 0 1 0 0-80z' p-id='2934' fill='%231296db'%3E%3C/path%3E%3C/svg%3E");
+  background-size: 48rpx;
+  width: 48rpx;
+  height: 48rpx;
+}
+.mine-icon{
+  background-image: url("data:image/svg+xml,%3Csvg t='1620633272833' class='icon' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='1999' width='48' height='48'%3E%3Cpath d='M351.344 568.256A307.584 307.584 0 0 1 207.392 307.2C207.392 137.536 343.76 0 512 0s304.608 137.536 304.608 307.2a307.584 307.584 0 0 1-143.952 261.056C835.424 614.928 952 730.704 952 869.904c0 205.456-880 205.456-880 0 0-139.2 116.576-254.976 279.344-301.648zM512 546.128c130.848 0 236.928-106.976 236.928-238.928S642.848 68.272 512 68.272 275.072 175.248 275.072 307.2s106.08 238.928 236.928 238.928zM884.32 869.92c0-138.08-164.688-255.504-372.32-255.504S139.68 731.84 139.68 869.904c0 114.448 744.64 114.448 744.64 0z' p-id='2000' fill='%23515151'%3E%3C/path%3E%3C/svg%3E");
+  background-size: 48rpx;
+  width: 48rpx;
+  height: 48rpx;
+}
