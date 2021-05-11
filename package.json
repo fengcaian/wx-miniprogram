@@ -1,0 +1,23 @@
+{
+  "name": "wx-miniprogram",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fengcaian/wx-miniprogram.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fengcaian/wx-miniprogram/issues"
+  },
+  "homepage": "https://github.com/fengcaian/wx-miniprogram#readme",
+  "dependencies": {
+    "weui-miniprogram": "^1.0.8"
+  }
+}

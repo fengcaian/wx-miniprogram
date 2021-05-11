@@ -49,16 +49,8 @@ Component({
     switchTab(e) {
       const data = e.currentTarget.dataset
       const url = data.path
-      wx.switchTab({
-        url,
-        success: () => {
-          this.setData({
-            selected: data.index
-          });
-          App.globalData.tabbarSelected = data.index;
-          console.log('selected=', this.data.selected);
-        }
-      })
+      wx.switchTab({url});
+      App.globalData.tabbarSelected = data.index;
     }
   }
 })

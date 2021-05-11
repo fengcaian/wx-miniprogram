@@ -1,10 +1,17 @@
 {
+  "plugins": {
+    "myPlugin": {
+        "version": "1.0.0",
+        "provider": "wxb302e0fc8ab232b4"
+    }
+  },
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
     "pages/login/login",
-    "pages/add/add",
-    "components/navbar/navbar"
+    "pages/add/add", 
+    "components/navbar/navbar",
+    "pages/forget-password/forget-password"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -17,9 +24,9 @@
   "sitemapLocation": "sitemap.json",
   "tabBar": {
     "custom": true,
-    "color": "#000000",
-    "selectedColor": "#000000",
-    "backgroundColor": "#000000",
+    "color": "#aaa",
+    "selectedColor": "#bbb",
+    "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/index/index",

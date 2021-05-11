@@ -2,7 +2,7 @@
 // 获取应用实例
 const App = getApp()
 
-Component({
+Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
@@ -13,25 +13,23 @@ Component({
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'), // 如需尝试获取用户信息可改为false
     navHeight: ''
   },
-  pageLifetimes: {
-    show() {
-      if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-        this.getTabBar().setData({
-          selected: 0
-        })
-      }
-      this.setData({
-        navHeight: App.globalData.navHeight
-      });
-      if (wx.getUserProfile) {
-        this.setData({
-          canIUseGetUserProfile: true
-        });
-      }
-      this.setData({
-        list: App.globalData.authList
+  onShow() {
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: App.globalData.tabbarSelected
       });
     }
+    this.setData({
+      navHeight: App.globalData.navHeight
+    });
+    if (wx.getUserProfile) {
+      this.setData({
+        canIUseGetUserProfile: true
+      });
+    }
+    this.setData({
+      list: App.globalData.authList
+    });
   },
   // 事件处理函数
   bindViewTap() {

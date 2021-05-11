@@ -30,6 +30,7 @@
   align-items: flex-end;
 }
 .forget-pwd{
+  width: 220rpx;
   height: 1.4rem;
 }
 .btn-area {
@@ -80,8 +81,11 @@
 }
 
 .wechat-area {
-  position: absolute;
-  top: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.round{
   width: 120rpx;
   height: 120rpx;
   border-radius: 50%;

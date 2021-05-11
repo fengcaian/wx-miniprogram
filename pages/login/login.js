@@ -1,28 +1,51 @@
 // pages/login/login.js
 import http from '../../utils/http.js';
 const App = getApp();
-Component({
+Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    navHeight: ''
+    navHeight: '',
+    account: '',
+    password: ''
   },
-  pageLifetimes: {
-    show() {
-      if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-        this.getTabBar().setData({
-          selected: 2
-        });
-      }
-      this.setData({
-        navHeight: App.globalData.navHeight
+  onShow() {
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: App.globalData.tabbarSelected
       });
     }
+    this.setData({
+      navHeight: App.globalData.navHeight
+    });
   },
 
-  login() {},
+  inputAccount(e) {
+    this.setData({
+      account: e.detail.value
+    });
+  },
+  inputPassword(e) {
+    this.setData({
+      password: e.detail.value
+    });
+  },
+
+  login() {
+    console.log(this.data.account);
+    console.log(this.data.password);
+    http({
+      url: 'http://127.0.0.1:7001/test',
+      method: 'get',
+    }).then((res) => {
+      console.log('success');
+      console.log(res);
+    }, (err) => {
+      console.log('err', err);
+    });
+  },
   wechatLogin() {
     console.log(44);
     wx.getUserProfile({
@@ -56,4 +79,11 @@ Component({
       }
     });
   },
+  forgetPassword() {
+    console.log('forgetPassword');
+    wx.navigateTo({url: '/pages/forget-password/forget-password'});
+  },
+  register() {
+    console.log('register');
+  }
 })

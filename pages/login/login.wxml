@@ -12,7 +12,7 @@
             <view class="page-section-title">商城账号</view>
             <view class="page-section-content">
               <view class="input-wrap">
-                <input class="weui-input" name="input" placeholder="请输入客户编号/手机号码/邮箱" />
+                <input class="weui-input" name="input" value="{{account}}" bindinput="inputAccount" placeholder="请输入客户编号/手机号码/邮箱" />
               </view>
             </view>
           </view>
@@ -20,8 +20,8 @@
             <view class="page-section-title">密码</view>
             <view class="page-section-content">
               <view class="input-wrap flex">
-                <input class="weui-input" type="password" name="password" placeholder="请输入密码" />
-                <text class="forget-pwd">忘记密码？</text>
+                <input class="weui-input" type="password" name="password" value="{{password}}" bindinput="inputPassword" placeholder="请输入密码" />
+                <view class="forget-pwd" bindtap="forgetPassword">忘记密码？</view>
               </view>
             </view>
           </view>
@@ -32,11 +32,13 @@
       </view>
       <view class="register-area">
         <text class="msg-login">短信验证码登录</text>
-        <text class="register">注册</text>
+        <view class="register" bindtap="register">注册</view>
       </view>
       <view class="other-login">
         <view class="other-login-title">第三方登录</view>
-        <view class="wechat-area">
+      </view>
+      <view class="wechat-area">
+        <view class="round">
           <image class="wechat" bindtap="wechatLogin" src="../../assets/images/wechat.png"></image>
         </view>
       </view>

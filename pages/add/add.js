@@ -1,6 +1,6 @@
 // pages/cart/cart.js
 const App = getApp();
-Component({
+Page({
 
   /**
    * 页面的初始数据
@@ -8,18 +8,15 @@ Component({
   data: {
     navHeight: ''
   },
-
-  pageLifetimes: {
-    show() {
-      if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-        this.getTabBar().setData({
-          selected: 1
-        });
-      }
-      this.setData({
-        navHeight: App.globalData.navHeight
+  onShow() {
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: App.globalData.tabbarSelected
       });
     }
+    this.setData({
+      navHeight: App.globalData.navHeight
+    });
   },
 
   webviewMessage(e) {

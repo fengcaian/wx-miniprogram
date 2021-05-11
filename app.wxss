@@ -1,4 +1,5 @@
 /**app.wxss**/
+@import '/miniprogram_npm/weui-miniprogram/weui-wxss/dist/style/weui.wxss';
 .view-page {
   position: relative;
   height: 100vh;
@@ -11,7 +12,7 @@
   box-sizing: border-box;
 }
 .container{
-  width: calc(100% - 50rpx);
-  padding: 25rpx;
+  width: calc(100% - 60rpx);
+  padding: 30rpx;
   overflow: auto;
 }

@@ -42,7 +42,8 @@ Component({
    */
   methods: {
     //回退
-    navBack: function () {
+    navBack() {
+      console.log('back');
         wx.navigateBack({
           delta: 1
         })      
