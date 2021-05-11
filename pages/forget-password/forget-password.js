@@ -1,5 +1,6 @@
 // pages/forget-password/forget-password.js
 import http from '../../utils/http.js';
+import * as API from '../../utils/api.js';
 const App = getApp();
 Page({
 
@@ -13,12 +14,7 @@ Page({
     checkCodeValidPass: false,
     paramsValidPass: false, // 参数是否全部校验通过
     countDownClock: 60, // 验证码倒计时
-    buttons: [],
-    showSlideValidDialog: false,
-    x: 0,
-    area_width: 85,   //可滑动区域的宽，单位是百分比，设置好后自动居中
-    box_width: 120,   //滑块的宽,单位是 rpx
-    maxNum: 0,
+    error: ''
   },
 
   /**
@@ -61,15 +57,13 @@ Page({
       paramsValidPass: this.data.phoneValidPass && true
     });
   },
-  getCheckCode() {
-    this.setData({
-      showSlideValidDialog: true
-    });
+  getCheckCode(ticket) {
     http({
-      url: 'http://127.0.0.1:7001/test',
+      url: API.phoneV2SendMessage,
       method: 'get',
       data: {
-        phone: this.data.phone
+        depositPhone: this.data.phone,
+        ticket,
       },
     }).then((res) => {
       let timer = setInterval(() => {
@@ -86,11 +80,6 @@ Page({
     }, (err) => {
       console.log('err', err);
     });
-  },
-  tapDialogButton(e) {
-    this.setData({
-      showSlideValidDialog: false,
-    })
   },
   next() {
     if (!/^([1-9]\d{10})$/.test(this.data.phone)) {
@@ -121,27 +110,6 @@ Page({
       console.log('err', err);
     });
   },
-  drag(e) {
-    var that = this;
-    coord = e.detail.x;
-  },
-  dragOver(e) {
- 
-    var that = this;
-    if (coord >= that.data.maxNum) {
-      wx.showToast({
-        title: '验证成功',
-        icon: 'success',
-        duration: 2000
-      })
-      //验证成功之后的代码
-    } else {
-      that.setData({
-        x: 0,
-      })
-    }
-    console.log(this.data.x)
-  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -157,44 +125,31 @@ Page({
       }
     })
   },
-  login: function () {
-    this.selectComponent('#captcha').show()
-    // 进行业务逻辑，若出现错误需重置验证码，执行以下方法
-    // if (!this.data.error) {
-    //   this.selectComponent('#captcha').refresh()
-    // }
+  showTCaptcha() {
+    this.selectComponent('#captcha').show();
   },
   // 验证码验证结果回调
-  handlerVerify: function (ev) {
+  handlerVerify(ev) {
       // 如果使用了 mpvue，ev.detail 需要换成 ev.mp.detail
       if(ev.detail.ret === 0) {
           // 验证成功
           console.log('ticket:', ev.detail.ticket);
-          console.log('ticket:', ev.detail)
+          this.getCheckCode(ev.detail.ticket);
       } else {
           // 验证失败
           // 请不要在验证失败中调用refresh，验证码内部会进行相应处理
       }
   },    
   // 验证码准备就绪
-  handlerReady: function () {
+  handlerReady() {
       console.log('验证码准备就绪')
   },    
   // 验证码弹框准备关闭
-  handlerClose: function () {
+  handlerClose() {
       console.log('验证码弹框准备关闭')
   },
   // 验证码出错
-  handlerError: function (ev) {
+  handlerError(ev) {
       console.log(ev.detail.errMsg)
-  },
-  toTCaptcha: function () {
-    wx.navigateToMiniProgram({
-      appId: 'wx5a3a7366fd07e119',
-      path: '/pages/index/index',
-      extraData: {
-        appId: 'wxb302e0fc8ab232b4' //您申请的验证码的 appId
-      }
-    })
   }
 })

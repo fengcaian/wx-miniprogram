@@ -1,17 +1,18 @@
 {
   "plugins": {
     "myPlugin": {
-        "version": "1.0.0",
-        "provider": "wxb302e0fc8ab232b4"
+      "version": "1.0.0",
+      "provider": "wxb302e0fc8ab232b4"
     }
   },
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
     "pages/login/login",
-    "pages/add/add", 
+    "pages/add/add",
     "components/navbar/navbar",
-    "pages/forget-password/forget-password"
+    "pages/forget-password/forget-password",
+    "pages/set-password/set-password"
   ],
   "window": {
     "backgroundTextStyle": "light",
