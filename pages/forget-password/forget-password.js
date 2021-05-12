@@ -1,6 +1,7 @@
 // pages/forget-password/forget-password.js
 import http from '../../utils/http.js';
 import * as API from '../../utils/api.js';
+import * as verifyUtil from '../../utils/constants/verify-util.js';
 const App = getApp();
 Page({
 
@@ -8,9 +9,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    phone: '',
+    navHeight: '',
+    showActionsheet: false,
+    groups: [
+      { text: '中国大陆', value: 86 },
+      { text: '中国澳门', value: 853 },
+      { text: '中国台湾', value: 886 },
+      { text: '中国香港', value: 852 }
+    ],
+    areaCode: '86',
+    phone: '1326589789',
     phoneValidPass: false,
-    checkCode: '',
+    checkCode: '13246',
     checkCodeValidPass: false,
     paramsValidPass: false, // 参数是否全部校验通过
     countDownClock: 60, // 验证码倒计时
@@ -23,6 +33,17 @@ Page({
   onShow: function () {
     this.setData({
       navHeight: App.globalData.navHeight
+    });
+  },
+  showAreaCodeActionSheet() {
+    this.setData({
+      showActionsheet: true
+    });
+  },
+  selectAreaCodeActionSheet({detail: {value}}) {
+    this.setData({
+      showActionsheet: false,
+      areaCode: value
     });
   },
   inputPhone(e) {
@@ -58,11 +79,15 @@ Page({
     });
   },
   getCheckCode(ticket) {
+    const params = {
+      account: this.data.phone,
+      ticket,
+    };
     http({
       url: API.phoneV2SendMessage,
       method: 'get',
       data: {
-        depositPhone: this.data.phone,
+        account: this.data.phone,
         ticket,
       },
     }).then((res) => {
@@ -96,9 +121,15 @@ Page({
       });
       return;
     }
+    const params = {
+      account: '',
+      password: '',
+      source: '',
+      isPhone: ''
+    };
     http({
-      url: 'http://127.0.0.1:7001/test',
-      method: 'get',
+      url: API.phonePasswordStep1,
+      method: 'post',
       data: {
         phone: this.data.phone,
         checkCode: this.data.checkCode
@@ -106,6 +137,7 @@ Page({
     }).then((res) => {
       console.log('success');
       console.log(res);
+      wx.navigateTo({url: '/pages/set-password/set-password'});
     }, (err) => {
       console.log('err', err);
     });

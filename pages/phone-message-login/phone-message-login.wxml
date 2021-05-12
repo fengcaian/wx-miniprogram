@@ -1,0 +1,33 @@
+<!--pages/phone-message-login/phone-message-login.wxml-->
+<view class='view-page'>
+  <view style="height: {{navHeight}}px">
+    <navbar page-name="返回"></navbar>
+  </view>
+  <view class="page-content" style="height: calc(100% - {{navHeight}}px - 50px)">
+    <view class="container">
+      <view class="title">欢迎使用</view>
+      <view class="form-area">
+        <form catchsubmit="formSubmit" catchreset="formReset">
+          <phone-input model:area-code="{{areaCode}}" model:phone="{{phone}}" bind:inputPhone='onInputPhone'></phone-input>
+          <check-code-input phone="{{phone}}"></check-code-input>
+        </form>
+      </view>
+      <view class="btn-area" id="buttonContainer">
+        <button class="btn-login" type="primary" bindtap="login">登  录</button>
+      </view>
+      <view class="register-area">
+        <text class="msg-login" bindtap="phoneMessageLogin">短信验证码登录</text>
+        <view class="register" bindtap="register">注册</view>
+      </view>
+      <view class="other-login">
+        <view class="other-login-title">第三方登录</view>
+      </view>
+      <view class="wechat-area">
+        <view class="round">
+          <image class="wechat" bindtap="wechatLogin" src="../../assets/images/wechat.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+

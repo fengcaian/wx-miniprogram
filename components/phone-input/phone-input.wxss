@@ -1,0 +1,28 @@
+/* components/phone-input/phone-input.wxss */
+.page-section {
+  margin: 30rpx 0;
+}
+.page-section-title{
+  font-size: 16px;
+  font-weight: bold;
+}
+.input-wrap{
+  padding: 10rpx 0 0 0;
+  font-size: 14px;
+  border-bottom: 1px solid #e6e6e6;
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.h30{
+  height: 30px;
+  line-height: 30px;
+}
+.separate{
+  width: 1px;
+  height: 20px;
+  margin: 0 20rpx 10rpx 20rpx;
+  background: #e6e6e6;
+}

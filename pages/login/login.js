@@ -1,15 +1,18 @@
 // pages/login/login.js
+const MD5 = require('MD5');
 import http from '../../utils/http.js';
+import * as API from '../../utils/api.js';
+import * as verifyUtil from '../../utils/constants/verify-util.js';
 const App = getApp();
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     navHeight: '',
     account: '',
-    password: ''
+    password: '',
+    phone: '',
+    areaCode: '86',
+    loginType: 'account',
+    smsValidateType: 'dynamic_login'
   },
   onShow() {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
@@ -34,14 +37,36 @@ Page({
   },
 
   login() {
-    console.log(this.data.account);
-    console.log(this.data.password);
+    const params = {
+      account: this.data.account,
+      password: MD5(this.data.password),
+      source: 'operate_source_xgj_wx_program'
+    };
     http({
-      url: 'http://127.0.0.1:7001/test',
-      method: 'get',
+      url: API.phoneV2Login,
+      method: 'post',
+      data: verifyUtil.sortParam(params),
+      header: {
+        'Content-type': 'application/json'
+      },
     }).then((res) => {
       console.log('success');
       console.log(res);
+      if (res.msg) {
+        wx.showToast({
+          title: res.msg,
+          icon: 'none'
+        });
+        if (res.result.length === 1) {
+          wx.setStorage({
+            key: 'isLoginCustomerFlag',
+            data: res.result[0].customerCode
+          });
+          wx.switchTab({
+            url: '/pages/index/index',
+          })
+        }
+      }
     }, (err) => {
       console.log('err', err);
     });
@@ -83,7 +108,12 @@ Page({
     console.log('forgetPassword');
     wx.navigateTo({url: '/pages/forget-password/forget-password'});
   },
+  switchLoginType(e) {
+    this.setData({
+      loginType: e.target.dataset.logintype === 'account' ? 'phone' : 'account'
+    });
+  },
   register() {
-    console.log('register');
+    wx.navigateTo({url: '/pages/forget-password/forget-password'});
   }
 })

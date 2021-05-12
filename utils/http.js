@@ -9,10 +9,18 @@ const http = options => {
       }, options.header),
       success: (res) => {
         if (res.statusCode === 200) {
-          resolve(res.data);
+          if (res.data.code === 200) {
+            resolve(res.data);
+          } else {
+            wx.showToast({
+              title: res.data.msg || '网络异常，请稍后再试~',
+              icon: 'none'
+            });
+            reject(res.data);
+          }
         } else {
           wx.showToast({
-            title: res.data.msg || '出错了！',
+            title: res.errMsg || '出错了！',
             icon: 'none'
           });
           reject(res);

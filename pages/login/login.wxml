@@ -8,22 +8,28 @@
       <view class="title">欢迎使用</view>
       <view class="form-area">
         <form catchsubmit="formSubmit" catchreset="formReset">
-          <view class="page-section">
-            <view class="page-section-title">商城账号</view>
-            <view class="page-section-content">
-              <view class="input-wrap">
-                <input class="weui-input" name="input" value="{{account}}" bindinput="inputAccount" placeholder="请输入客户编号/手机号码/邮箱" />
+          <view wx:if="{{loginType === 'account'}}">
+            <view class="page-section">
+              <view class="page-section-title">商城账号</view>
+              <view class="page-section-content">
+                <view class="input-wrap">
+                  <input class="weui-input" name="input" value="{{account}}" bindinput="inputAccount" placeholder="请输入客户编号/手机号码/邮箱" />
+                </view>
+              </view>
+            </view>
+            <view class="page-section">
+              <view class="page-section-title">密码</view>
+              <view class="page-section-content">
+                <view class="input-wrap flex">
+                  <input class="weui-input" type="password" name="password" value="{{password}}" bindinput="inputPassword" placeholder="请输入密码" />
+                  <view class="forget-pwd" bindtap="forgetPassword">忘记密码？</view>
+                </view>
               </view>
             </view>
           </view>
-          <view class="page-section">
-            <view class="page-section-title">密码</view>
-            <view class="page-section-content">
-              <view class="input-wrap flex">
-                <input class="weui-input" type="password" name="password" value="{{password}}" bindinput="inputPassword" placeholder="请输入密码" />
-                <view class="forget-pwd" bindtap="forgetPassword">忘记密码？</view>
-              </view>
-            </view>
+          <view wx:else>
+            <phone-input model:area-code="{{areaCode}}" model:phone="{{phone}}" bind:inputPhone='onInputPhone'></phone-input>
+            <check-code-input phone="{{phone}}" smsValidateType="{{smsValidateType}}"></check-code-input>
           </view>
         </form>
       </view>
@@ -31,7 +37,7 @@
         <button class="btn-login" type="primary" bindtap="login">登  录</button>
       </view>
       <view class="register-area">
-        <text class="msg-login">短信验证码登录</text>
+        <text class="msg-login" data-logintype="{{loginType}}" bindtap="switchLoginType">{{loginType === 'account' ? '短信验证码登录' : '账号密码登录'}}</text>
         <view class="register" bindtap="register">注册</view>
       </view>
       <view class="other-login">
@@ -44,7 +50,4 @@
       </view>
     </view>
   </view>
-  <!-- <view style="height: 50px; width: 100px">
-    <tabbar></tabbar>
-  </view> -->
 </view>

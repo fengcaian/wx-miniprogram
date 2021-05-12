@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "t-captcha": "plugin://myPlugin/t-captcha"
+  }
+}

@@ -1,0 +1,18 @@
+<!--components/check-code-input/check-code-input.wxml-->
+<view class="page-section">
+  <view class="page-section-title">验证码</view>
+  <view class="page-section-content">
+    <view class="input-wrap flex">
+      <input class="h30" type="text" name="checkCode" value="{{checkCode}}" bindinput="inputCheckCode" placeholder="请输入验证码" />
+      <view wx:if="{{countDownClock === 60}}" class="right-label" bindtap="showTCaptcha">获取验证码</view>
+      <view wx:else class="right-label">{{countDownClock}} S</view>
+    </view>
+  </view>
+</view>
+<t-captcha
+  id="captcha"
+  app-id="2099261574"
+  bindverify="handlerVerify"
+  bindready="handlerReady"
+  bindclose="handlerClose"
+  binderror="handlerError" />
