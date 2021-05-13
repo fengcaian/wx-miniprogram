@@ -20,7 +20,7 @@ const http = options => {
           }
         } else {
           wx.showToast({
-            title: res.errMsg || '出错了！',
+            title: '网络异常，请稍后再试~',
             icon: 'none'
           });
           reject(res);

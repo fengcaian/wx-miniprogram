@@ -15,4 +15,8 @@
   width: calc(100% - 60rpx);
   padding: 30rpx;
   overflow: auto;
+  font-size: 14px;
+}
+.blue{
+  color: #409eff;
 }

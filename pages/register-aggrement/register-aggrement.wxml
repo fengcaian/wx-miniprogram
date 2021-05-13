@@ -1,0 +1,11 @@
+<!--pages/register-aggrement/register-aggrement.wxml-->
+<!--pages/register/register.wxml-->
+<view class='view-page'>
+  <view style="height: {{navHeight}}px">
+    <navbar page-name="用户注册服务协议"></navbar>
+  </view>
+  <view class="page-content" style="height: calc(100% - {{navHeight}}px - 50px)">
+    <view class="container">
+    </view>
+  </view>
+</view>

@@ -1,11 +1,11 @@
 <!--pages/login/login.wxml-->
 <view class='view-page'>
   <view style="height: {{navHeight}}px">
-    <navbar page-name="返回"></navbar>
+    <navbar page-name="芯管家"></navbar>
   </view>
   <view class="page-content" style="height: calc(100% - {{navHeight}}px - 50px)">
     <view class="container">
-      <view class="title">欢迎使用</view>
+      <view class="title">欢迎使用芯管家</view>
       <view class="form-area">
         <form catchsubmit="formSubmit" catchreset="formReset">
           <view wx:if="{{loginType === 'account'}}">
@@ -13,7 +13,7 @@
               <view class="page-section-title">商城账号</view>
               <view class="page-section-content">
                 <view class="input-wrap">
-                  <input class="weui-input" name="input" value="{{account}}" bindinput="inputAccount" placeholder="请输入客户编号/手机号码/邮箱" />
+                  <input class="h30" name="account" model:value="{{account}}" bindinput="onInputAccountField" placeholder="请输入客户编号/手机号码/邮箱" />
                 </view>
               </view>
             </view>
@@ -21,22 +21,22 @@
               <view class="page-section-title">密码</view>
               <view class="page-section-content">
                 <view class="input-wrap flex">
-                  <input class="weui-input" type="password" name="password" value="{{password}}" bindinput="inputPassword" placeholder="请输入密码" />
-                  <view class="forget-pwd" bindtap="forgetPassword">忘记密码？</view>
+                  <input class="h30" type="password" name="password" model:value="{{password}}" bindinput="onInputAccountField" placeholder="请输入密码" />
+                  <view class="forget-pwd h30" bindtap="forgetPassword">忘记密码？</view>
                 </view>
               </view>
             </view>
           </view>
           <view wx:else>
-            <phone-input model:area-code="{{areaCode}}" model:phone="{{phone}}" bind:inputPhone='onInputPhone'></phone-input>
-            <check-code-input phone="{{phone}}" smsValidateType="{{smsValidateType}}"></check-code-input>
+            <phone-input model:area-code="{{areaCode}}" model:phone="{{phone}}" bind:inputPhone="onInputPhoneField"></phone-input>
+            <verify-code-input phone="{{phone}}" smsValidateType="{{smsValidateType}}" model:verify-code="{{verifyCode}}" bind:inputVerifyCode="onInputPhoneField"></verify-code-input>
           </view>
         </form>
       </view>
-      <view class="btn-area" id="buttonContainer">
-        <button class="btn-login" type="primary" bindtap="login">登  录</button>
+      <view class="btn-area">
+        <button class="{{paramsValidPass ? 'btn-login' : 'btn-disabled'}}" disabled="{{!paramsValidPass}}" type="primary" bindtap="login">登  录</button>
       </view>
-      <view class="register-area">
+      <view class="register-area blue">
         <text class="msg-login" data-logintype="{{loginType}}" bindtap="switchLoginType">{{loginType === 'account' ? '短信验证码登录' : '账号密码登录'}}</text>
         <view class="register" bindtap="register">注册</view>
       </view>

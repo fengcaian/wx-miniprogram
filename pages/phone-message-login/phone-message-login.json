@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "phone-input": "/components/phone-input/phone-input",
-    "check-code-input": "/components/check-code-input/check-code-input"
-  }
-}

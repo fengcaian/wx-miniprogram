@@ -11,10 +11,10 @@
     "pages/login/login",
     "pages/add/add",
     "components/navbar/navbar",
-    "components/phone-input/phone-input",
     "pages/forget-password/forget-password",
     "pages/set-password/set-password",
-    "pages/phone-message-login/phone-message-login"
+    "pages/register/register",
+    "pages/register-aggrement/register-aggrement"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -3,6 +3,7 @@ const computedBehavior = require('miniprogram-computed').behavior;
 const MD5 = require('MD5');
 import http from '../../utils/http.js';
 import * as API from '../../utils/api.js';
+import * as keyMap from '../../utils/constants/key-map.js';
 const App = getApp();
 Component({
   behaviors: [computedBehavior],
@@ -45,15 +46,6 @@ Component({
       }
     },
     passwordInput(e) {
-      if (e.target.dataset.name === 'password') {
-        this.setData({
-          password: e.detail.value
-        });
-      } else {
-        this.setData({
-          repeatPassword: e.detail.value
-        });
-      }
       if (this.data.password === this.data.repeatPassword) {
         this.setData({
           errorLabel: ''
@@ -62,9 +54,8 @@ Component({
     },
     passwordBlur(e) {
       if (e.target.dataset.name === 'password') {
-        const reg = /^(?![\d]+$)(?![a-zA-Z]+$)(?![^\da-zA-Z]+$).{8,20}$/;
-        const regZh = new RegExp('[\u4E00-\u9FFF]+', 'g');
-        if (!reg.test(this.data.password) || regZh.test(this.data.password)) {
+        const regZh = new RegExp(keyMap.regZh, 'g');
+        if (!keyMap.pwdReg.test(this.data.password) || regZh.test(this.data.password)) {
           this.setData({
             errorLabel: '需不少于8位的字母数字组合'
           });
@@ -75,8 +66,29 @@ Component({
         }
       } else {
         if (this.data.password && this.data.repeatPassword) {
+          if (this.data.password === this.data.repeatPassword) {
+            this.setData({
+              errorLabel: ''
+            });
+          } else {
+            this.setData({
+              errorLabel: '两次输入不一致'
+            });
+            return;
+          }
+          const regZh = new RegExp(keyMap.regZh, 'g');
+          if (!keyMap.pwdReg.test(this.data.password) || regZh.test(this.data.password)) {
+            this.setData({
+              errorLabel: '需不少于8位的字母数字组合'
+            });
+          } else if (!this.data.repeatPassword) {
+            this.setData({
+              errorLabel: ''
+            });
+          }
+        } else if (this.data.password && !this.data.repeatPassword) {
           this.setData({
-            errorLabel: this.data.password === this.data.repeatPassword ? '' : '两次输入不一致'
+            errorLabel: '两次输入不一致'
           });
         }
       }

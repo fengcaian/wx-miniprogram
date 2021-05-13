@@ -11,8 +11,10 @@ Page({
     password: '',
     phone: '',
     areaCode: '86',
+    verifyCode: '',
     loginType: 'account',
-    smsValidateType: 'dynamic_login'
+    smsValidateType: 'dynamic_login',
+    paramsValidPass: false // 参数全部验证通过
   },
   onShow() {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
@@ -25,25 +27,35 @@ Page({
     });
   },
 
-  inputAccount(e) {
+  onInputAccountField() {
     this.setData({
-      account: e.detail.value
+      paramsValidPass: this.data.account && this.data.password
     });
   },
-  inputPassword(e) {
+  onInputPhoneField() {
     this.setData({
-      password: e.detail.value
+      paramsValidPass: this.data.phone && this.data.verifyCode
     });
   },
 
   login() {
-    const params = {
+    let params = {
       account: this.data.account,
       password: MD5(this.data.password),
       source: 'operate_source_xgj_wx_program'
     };
+    let url = API.phoneV2Login;
+    if (this.data.loginType === 'phone') {
+      params = {
+        account: this.data.phone,
+        password: this.data.verifyCode,
+        source: 'operate_source_xgj_wx_program',
+        sign: ''
+      };
+      url = API.phoneDynamicLogin;
+    }
     http({
-      url: API.phoneV2Login,
+      url,
       method: 'post',
       data: verifyUtil.sortParam(params),
       header: {
@@ -112,8 +124,13 @@ Page({
     this.setData({
       loginType: e.target.dataset.logintype === 'account' ? 'phone' : 'account'
     });
+    if (this.data.loginType === 'account') {
+      this.onInputPhoneField();
+    } else {
+      this.onInputAccountField();
+    }
   },
   register() {
-    wx.navigateTo({url: '/pages/forget-password/forget-password'});
+    wx.navigateTo({url: '/pages/register/register'});
   }
 })

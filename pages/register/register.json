@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "mp-icon": "weui-miniprogram/icon/icon",
     "navbar": "/components/navbar/navbar",
     "phone-input": "/components/phone-input/phone-input",
     "verify-code-input": "/components/verify-code-input/verify-code-input"

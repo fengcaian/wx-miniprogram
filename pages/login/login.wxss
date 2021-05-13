@@ -29,9 +29,13 @@
   justify-content: space-between;
   align-items: flex-end;
 }
+.h30{
+  height: 30px;
+  line-height: 30px;
+}
 .forget-pwd{
   width: 220rpx;
-  height: 1.4rem;
+  text-align: right;
 }
 .btn-area {
   width: 100%;
@@ -39,6 +43,11 @@
 .btn-login{
   width: 100% !important;
   border-radius: 20px;
+}
+.btn-disabled{
+  width: 100% !important;
+  border-radius: 20px;
+  background: #CCCCCC !important;
 }
 .register-area {
   display: flex;

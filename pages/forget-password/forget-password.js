@@ -1,7 +1,6 @@
 // pages/forget-password/forget-password.js
 import http from '../../utils/http.js';
 import * as API from '../../utils/api.js';
-import * as verifyUtil from '../../utils/constants/verify-util.js';
 const App = getApp();
 Page({
 
@@ -18,13 +17,14 @@ Page({
       { text: '中国香港', value: 852 }
     ],
     areaCode: '86',
-    phone: '1326589789',
+    phone: '',
     phoneValidPass: false,
-    checkCode: '13246',
-    checkCodeValidPass: false,
+    verifyCode: '',
+    verifyCodeValidPass: false,
     paramsValidPass: false, // 参数是否全部校验通过
     countDownClock: 60, // 验证码倒计时
-    error: ''
+    error: '',
+    smsValidateType: 'back_pwd'
   },
 
   /**
@@ -47,9 +47,6 @@ Page({
     });
   },
   inputPhone(e) {
-    this.setData({
-      phone: e.detail.value
-    });
     if (e.detail.value === '') {
       this.setData({
         phoneValidPass: false,
@@ -59,35 +56,29 @@ Page({
     }
     this.setData({
       phoneValidPass: true,
-      paramsValidPass: this.data.checkCodeValidPass && true
+      paramsValidPass: this.data.verifyCodeValidPass && true
     });
   },
-  inputCheckCode(e) {
-    this.setData({
-      checkCode: e.detail.value
-    });
+  inputVerifyCode(e) {
     if (e.detail.value === '') {
       this.setData({
-        checkCodeValidPass: false,
+        verifyCodeValidPass: false,
         paramsValidPass: false,
       });
       return;
     }
     this.setData({
-      checkCodeValidPass: true,
+      verifyCodeValidPass: true,
       paramsValidPass: this.data.phoneValidPass && true
     });
   },
-  getCheckCode(ticket) {
-    const params = {
-      account: this.data.phone,
-      ticket,
-    };
+  getVerifyCode(ticket) {
     http({
       url: API.phoneV2SendMessage,
       method: 'get',
       data: {
         account: this.data.phone,
+        smsValidateType: this.data.smsValidateType,
         ticket,
       },
     }).then((res) => {
@@ -114,7 +105,7 @@ Page({
       });
       return;
     }
-    if (!/^(\d{6})$/.test(this.data.checkCode)) {
+    if (!/^(\d{6})$/.test(this.data.verifyCode)) {
       wx.showToast({
         title: '验证码格式有误！',
         icon: 'none'
@@ -132,7 +123,7 @@ Page({
       method: 'post',
       data: {
         phone: this.data.phone,
-        checkCode: this.data.checkCode
+        verifyCode: this.data.verifyCode
       },
     }).then((res) => {
       console.log('success');
@@ -158,7 +149,23 @@ Page({
     })
   },
   showTCaptcha() {
-    this.selectComponent('#captcha').show();
+    if (!this.data.phone) {
+      wx.showToast({
+        title: '请输入手机号',
+        icon: 'none'
+      });
+      return;
+    }
+    http({
+      url: API.phoneV2SendMessage,
+      method: 'get'
+    }).then((res) => {
+      if (res.msg === 'need_generate_captcha' || res.msg === 'captcha_not_pass') {
+        this.selectComponent('#captcha').show();
+      }
+    }, (err) => {
+      console.log('err', err);
+    });
   },
   // 验证码验证结果回调
   handlerVerify(ev) {
@@ -166,7 +173,7 @@ Page({
       if(ev.detail.ret === 0) {
           // 验证成功
           console.log('ticket:', ev.detail.ticket);
-          this.getCheckCode(ev.detail.ticket);
+          this.getVerifyCode(ev.detail.ticket);
       } else {
           // 验证失败
           // 请不要在验证失败中调用refresh，验证码内部会进行相应处理

@@ -1,0 +1,57 @@
+/* pages/register/register.wxss */
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 50rpx;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 50rpx;
+}
+.form-area {
+  width: 100%;
+}
+
+.page-section {
+  margin: 30rpx 0;
+}
+.page-section-title{
+  font-size: 16px;
+  font-weight: bold;
+}
+.input-wrap{
+  padding: 10rpx 0 0 0;
+  font-size: 14px;
+  border-bottom: 1px solid #e6e6e6;
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.h30{
+  height: 30px;
+  line-height: 30px;
+}
+.forget-pwd{
+  width: 220rpx;
+  text-align: right;
+}
+.btn-area {
+  width: 100%;
+}
+.btn-register{
+  width: 100% !important;
+  border-radius: 20px;
+}
+.btn-disabled{
+  width: 100% !important;
+  border-radius: 20px;
+  background: #CCCCCC !important;
+}
+.error-tip{
+  width: 100%;
+  height: 25px;
+  color: #FF0000;
+  font-size: 12px;
+}
