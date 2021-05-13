@@ -27,7 +27,7 @@ Component({
       }
       http({
         url: API.phoneV2SendMessage,
-        method: 'get'
+        method: 'post'
       }).then((res) => {
         if (res.msg === 'need_generate_captcha' || res.msg === 'captcha_not_pass') {
           this.selectComponent('#captcha').show();
@@ -62,12 +62,15 @@ Component({
     },
     getVerifyCode(ticket) {
       http({
-        url: API.phoneV2SendMessage,
-        method: 'get',
+        url: `${API.phoneV2SendMessage}?ticket=${encodeURIComponent(ticket)}`,
+        method: 'post',
         data: {
           account: this.data.phone,
           smsValidateType: this.data.smsValidateType,
           ticket,
+        },
+        header: {
+          'Content-type': 'application/json'
         },
       }).then((res) => {
         let timer = setInterval(() => {
